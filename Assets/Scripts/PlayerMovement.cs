@@ -3,13 +3,18 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, Range(1f, 10f)]
     private float speed = 5.0f;
-    [SerializeField]
-    private float turnSpeed = 720.0f; // 1秒間にどれだけ旋回するか（度数）
+    [SerializeField, Range(100f, 1000f)]
+    private float turnSpeed = 720.0f;
+    [SerializeField, Range(1f, 20f)]
+    private float jumpHeight = 2.0f;
+    [SerializeField, Range(0f, 5f)]
+    private float fallMultiplier = 2.5f;  // 落下時の重力加速度を増加させるための乗数
 
     private Rigidbody rb;
     private Camera cam;
+    private bool isGrounded;
 
     void Start()
     {
@@ -18,31 +23,73 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Jump();
+        }
+
+        // 地面に接触していない時に追加の重力を適用
+        if (!isGrounded && rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+        }
+    }
+
     void FixedUpdate()
     {
-        Vector3 camForward = cam.transform.forward;
-        Vector3 camRight = cam.transform.right;
+        Move();
+        Rotate();
+    }
 
-        camForward.y = 0;
-        camRight.y = 0;
-        camForward.Normalize();
-        camRight.Normalize();
+    private void Move()
+    {
+        Vector3 camForward = Vector3.Scale(cam.transform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 camRight = Vector3.Scale(cam.transform.right, new Vector3(1, 0, 1)).normalized;
 
-        Vector3 inputDirection = Vector3.zero;
+        Vector3 inputDirection = (camForward * Input.GetAxisRaw("Vertical") + camRight * Input.GetAxisRaw("Horizontal")).normalized;
+        Vector3 movement = inputDirection * speed;
 
-        if (Input.GetKey(KeyCode.W)) inputDirection += camForward;
-        if (Input.GetKey(KeyCode.S)) inputDirection -= camForward;
-        if (Input.GetKey(KeyCode.A)) inputDirection -= camRight;
-        if (Input.GetKey(KeyCode.D)) inputDirection += camRight;
-
-        Vector3 movement = inputDirection.normalized * speed;
-        rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
-
-        // プレイヤーの向きを変更
-        if (inputDirection != Vector3.zero)
+        if (inputDirection == Vector3.zero)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(inputDirection, Vector3.up);
-            rb.rotation = Quaternion.RotateTowards(rb.rotation, targetRotation, turnSpeed * Time.fixedDeltaTime);
+            rb.velocity = new Vector3(0, rb.velocity.y, 0);
+        }
+        else
+        {
+            rb.velocity = new Vector3(movement.x, rb.velocity.y, movement.z);
+        }
+    }
+
+    private void Rotate()
+    {
+        Vector3 direction = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        if (direction.magnitude > 0.1f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(direction, Vector3.up);
+            rb.rotation = Quaternion.RotateTowards(rb.rotation, targetRotation, turnSpeed * Time.deltaTime);
+        }
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y), ForceMode.VelocityChange);
+        isGrounded = false;
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            isGrounded = false;
         }
     }
 }
