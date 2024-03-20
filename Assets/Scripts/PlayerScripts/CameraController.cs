@@ -5,10 +5,21 @@ public class CameraController : MonoBehaviour
     public Transform player;
     [SerializeField] private float distance = 10.0f;
     [SerializeField] private float height = 5.0f;
-    [SerializeField] private float rotationSpeed = 50.0f;
-    [SerializeField] private Vector3 offset;
+    [SerializeField, Range(35f, 100f)] private float rotationSpeed = 50.0f;
+    private Vector3 offset;
 
     void Start()
+    {
+        InitializeCameraRotation();
+    }
+
+    void LateUpdate()
+    {
+        RotateCameraWithInput();
+        AdjustCameraPositionToAvoidObstacles();
+    }
+
+    void InitializeCameraRotation()
     {
         offset = new Vector3(0.5f * distance, height, -0.5f * distance);
 
@@ -20,8 +31,7 @@ public class CameraController : MonoBehaviour
         transform.LookAt(player.position);
     }
 
-
-    void LateUpdate()
+    void RotateCameraWithInput()
     {
         Vector3 followPosition = player.position + offset;
         transform.position = followPosition;
@@ -36,5 +46,15 @@ public class CameraController : MonoBehaviour
         }
 
         offset = transform.position - player.position;
+    }
+
+    void AdjustCameraPositionToAvoidObstacles()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(player.position, transform.position - player.position, out hit, offset.magnitude))
+        {
+            transform.position = hit.point;
+            transform.LookAt(player.position);
+        }
     }
 }
