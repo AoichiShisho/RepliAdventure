@@ -378,7 +378,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 265168990}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1466896180}
+        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
+        m_MethodName: ContinueGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &265168990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +429,39 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 265168987}
   m_CullTransparentMesh: 1
+--- !u!1 &440179811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 440179812}
+  m_Layer: 0
+  m_Name: TestPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &440179812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440179811}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1151388027976576399}
+  - {fileID: 495684447}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &495684444
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +553,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 440179812}
   m_LocalEulerAnglesHint: {x: 25, y: 45, z: 0}
 --- !u!114 &495684448
 MonoBehaviour:
@@ -525,8 +570,7 @@ MonoBehaviour:
   player: {fileID: 1151388027976576399}
   distance: 10
   height: 5
-  rotationSpeed: 50
-  offset: {x: 0, y: 0, z: 0}
+  rotationSpeed: 75
 --- !u!1 &640751815
 GameObject:
   m_ObjectHideFlags: 0
@@ -855,7 +899,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 880182277}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1466896180}
+        m_TargetAssemblyTypeName: PauseScript, Assembly-CSharp
+        m_MethodName: ExitToTitle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &880182277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,6 +1144,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1466896179}
+  - component: {fileID: 1466896180}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1107,9 +1164,23 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1849846307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1466896180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466896178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2edfd27775094ef5afc14db5748b593, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pausePanel: {fileID: 1834518298}
 --- !u!1 &1834518298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1284,7 +1355,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1834518299}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1466896179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1304,7 +1375,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 440179812}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1587545475629674577
 MeshRenderer:
@@ -1371,7 +1442,7 @@ GameObject:
   - component: {fileID: 8164078559140282037}
   - component: {fileID: 8164078559140282039}
   m_Layer: 0
-  m_Name: TestPlayer
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1393,6 +1464,7 @@ MonoBehaviour:
   turnSpeed: 720
   jumpHeight: 2
   fallMultiplier: 1.25
+  cam: {fileID: 495684446}
 --- !u!54 &8164078559140282038
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1449,8 +1521,6 @@ SceneRoots:
   - {fileID: 72216459}
   - {fileID: 1111431241}
   - {fileID: 693374168}
-  - {fileID: 1151388027976576399}
-  - {fileID: 495684447}
-  - {fileID: 1849846307}
-  - {fileID: 741039399}
+  - {fileID: 440179812}
   - {fileID: 1466896179}
+  - {fileID: 741039399}
