@@ -8,6 +8,10 @@ public class CameraController : MonoBehaviour
     [SerializeField, Range(35f, 100f)] private float rotationSpeed = 50.0f;
     private Vector3 offset;
 
+    [SerializeField] private float cameraYMin = 30f;
+    [SerializeField] private float cameraYMax = 80f;
+    [SerializeField] private bool cameraInRange = true;
+
     void Start()
     {
         InitializeCameraRotation();
@@ -15,8 +19,16 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        RotateCameraWithInput();
-        AdjustCameraPositionToAvoidObstacles();
+        if (transform.position.y <= cameraYMax && transform.position.y >= cameraYMin) {
+            cameraInRange = true;
+        } else {
+            cameraInRange = false;
+        }
+
+        if (cameraInRange) {
+            RotateCameraWithInput();
+            AdjustCameraPositionToAvoidObstacles();
+        }
     }
 
     void InitializeCameraRotation()

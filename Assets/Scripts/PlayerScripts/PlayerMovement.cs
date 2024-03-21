@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField, Range(1f, 10f)]
     private float speed = 5.0f;
@@ -13,13 +13,12 @@ public class PlayerController : MonoBehaviour
     private float fallMultiplier = 2.5f;  // 落下時の重力加速度を増加させるための乗数
 
     private Rigidbody rb;
-    private Camera cam;
+    public Camera cam;
     private bool isGrounded;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        cam = Camera.main;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
     }
 
