@@ -69,4 +69,10 @@ public class CameraController : MonoBehaviour
             transform.LookAt(player.position);
         }
     }
+
+    public void ResetPosition()
+    {
+        transform.position = player.position + offset;
+        transform.LookAt(player.position);
+    }
 }
