@@ -20,7 +20,7 @@ public class PlayerUIManager : MonoBehaviour
 
     public void UpdateUI()
     {
-        PlayerData data = dataManager.LoadPlayerData();
+        PlayerData data = FindObjectOfType<DataManager>().LoadPlayerData();
         lifeText.text = "Life: " + data.life;
         coinsText.text = "Coins: " + data.coins;
     }

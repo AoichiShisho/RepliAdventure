@@ -7,16 +7,15 @@ public class DataManager : MonoBehaviour
 {
     private string dataPath;
 
-    void Start()
+    private void Awake()
     {
-        dataPath = Application.persistentDataPath + "/playerData.json";
+        dataPath = Path.Combine(Application.persistentDataPath, "playerData.json");
     }
 
     public void SavePlayerData(PlayerData data)
     {
-        string jsonData = JsonUtility.ToJson(data);
-        File.WriteAllText(dataPath, jsonData); // 指定したパスにファイルが存在しない場合は新しいファイルを作成する
-        Debug.Log("Data saved to " + dataPath);
+        string jsonData = JsonUtility.ToJson(data, true);
+        File.WriteAllText(dataPath, jsonData);
     }
 
     public PlayerData LoadPlayerData()
@@ -24,14 +23,8 @@ public class DataManager : MonoBehaviour
         if (File.Exists(dataPath))
         {
             string jsonData = File.ReadAllText(dataPath);
-            PlayerData data = JsonUtility.FromJson<PlayerData>(jsonData);
-            Debug.Log("Data loaded from " + dataPath);
-            return data;
+            return JsonUtility.FromJson<PlayerData>(jsonData);
         }
-        else
-        {
-            Debug.Log("No data found at " + dataPath + ", returning new PlayerData object");
-            return new PlayerData();
-        }
+        return new PlayerData(); // ファイルが存在しない場合はデフォルト値を返す
     }
 }
