@@ -3,12 +3,12 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     [SerializeField, Range(50f, 200f)] private float rotationSpeed = 100f;
+    [SerializeField] private GameObject coinParticlePrefab;
 
     private void Update()
     {
         transform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
     }
-
 
     private void OnTriggerEnter(Collider other)
     {
@@ -31,12 +31,26 @@ public class Coin : MonoBehaviour
                     Debug.LogError("PlayerUIManager not found in the scene.");
                 }
 
+                PlayCoinParticleEffect();
                 Destroy(gameObject);
             }
             else
             {
                 Debug.LogError("DataManager not found in the scene.");
             }
+        }
+    }
+
+    private void PlayCoinParticleEffect()
+    {
+        if (coinParticlePrefab != null)
+        {
+            GameObject particleInstance = Instantiate(coinParticlePrefab, transform.position, Quaternion.identity);
+            Destroy(particleInstance, particleInstance.GetComponent<ParticleSystem>().main.duration);
+        }
+        else
+        {
+            Debug.LogError("Coin particle prefab is not assigned.");
         }
     }
 }
