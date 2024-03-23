@@ -13,6 +13,11 @@ public class PlayerState : MonoBehaviour
 
         Vector3 spawnPosition = transform.TransformPoint(new Vector3(0, 0, 0));
 
+        if (!(newPlayerModel is Repli))
+        {
+            spawnPosition = transform.TransformPoint(new Vector3(0, -0.7f, 0));
+        }
+
         CurrentPlayerModel = Instantiate(newPlayerModel, spawnPosition, Quaternion.identity, transform);
     }
 }

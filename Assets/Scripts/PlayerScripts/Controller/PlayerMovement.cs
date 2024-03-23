@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField, Range(100f, 1000f)]
     private float turnSpeed = 720.0f;
     [SerializeField, Range(1f, 20f)]
-    private float jumpHeight = 2.0f;
+    public float jumpHeight = 2.0f;
     [SerializeField, Range(0f, 5f)]
     private float fallMultiplier = 2.5f;  // 落下時の重力加速度を増加させるための乗数
 

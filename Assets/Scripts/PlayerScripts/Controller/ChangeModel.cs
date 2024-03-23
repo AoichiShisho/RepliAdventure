@@ -27,7 +27,7 @@ public class ChangeModel : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerState.CurrentPlayerModel?.Use();
+            playerState.CurrentPlayerModel?.Action();
         }
     }
 

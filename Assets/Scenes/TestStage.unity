@@ -2311,7 +2311,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
@@ -2353,6 +2353,7 @@ MonoBehaviour:
   playerModels:
   - {fileID: -4622911815781026884, guid: b4b8b049cfe354cf182719572e5b4b20, type: 3}
   - {fileID: -6171675287790177221, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
+  - {fileID: -8300015081773974832, guid: 31ecbe2a1041ed848a499132cd1b1460, type: 3}
 --- !u!114 &8164078559140282042
 MonoBehaviour:
   m_ObjectHideFlags: 0
