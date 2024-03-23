@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Repli : PlayerModel
+public class Spider : PlayerModel
 {
     public override void Action()
     {

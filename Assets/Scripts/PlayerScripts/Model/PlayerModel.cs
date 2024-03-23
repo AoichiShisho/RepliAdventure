@@ -2,5 +2,5 @@ using UnityEngine;
 
 public abstract class PlayerModel : MonoBehaviour
 {
-    public abstract void Use();
+    public abstract void Action();
 }

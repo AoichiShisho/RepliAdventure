@@ -4,8 +4,24 @@ using UnityEngine;
 
 public class Chicken : PlayerModel
 {
-    public override void Use()
+    public override void Action()
     {
-        Debug.Log("通常より高くジャンプ");
+        GameObject playerObject = GameObject.Find("Player");
+        if (playerObject != null)
+        {
+            PlayerMovement playerMovement = playerObject.GetComponent<PlayerMovement>();
+            if (playerMovement != null)
+            {
+                playerMovement.jumpHeight = 5.0f;
+            }
+            else
+            {
+                Debug.LogError("PlayerMovementコンポーネントがPlayerオブジェクトに見つかりません。");
+            }
+        }
+        else
+        {
+            Debug.LogError("Playerオブジェクトがシーン内に見つかりません。");
+        }
     }
 }

@@ -343,6 +343,7 @@ GameObject:
   - component: {fileID: 4292928448873590}
   - component: {fileID: 95970164997226778}
   - component: {fileID: -6171675287790177221}
+  - component: {fileID: 8329611227591507619}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Untagged
@@ -402,3 +403,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 931f43d090f9f4a67a6754b8b6553463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8329611227591507619
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969419073538870}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.4, z: 1}
+  m_Center: {x: 0, y: 0.8, z: 0}
