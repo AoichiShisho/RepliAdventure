@@ -2267,6 +2267,10 @@ MonoBehaviour:
   jumpHeight: 2
   fallMultiplier: 1.25
   cam: {fileID: 495684446}
+  ground:
+    serializedVersion: 2
+    m_Bits: 64
+  isWallClimbing: 0
 --- !u!54 &8164078559140282038
 Rigidbody:
   m_ObjectHideFlags: 0

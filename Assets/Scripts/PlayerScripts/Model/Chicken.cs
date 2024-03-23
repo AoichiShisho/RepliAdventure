@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Chicken : PlayerModel
 {
-    public override void Action()
+    private void Awake()
     {
         GameObject playerObject = GameObject.Find("Player");
         if (playerObject != null)
@@ -13,6 +13,7 @@ public class Chicken : PlayerModel
             if (playerMovement != null)
             {
                 playerMovement.jumpHeight = 5.0f;
+                playerMovement.isSpider = false;
             }
             else
             {
@@ -23,5 +24,10 @@ public class Chicken : PlayerModel
         {
             Debug.LogError("Playerオブジェクトがシーン内に見つかりません。");
         }
+    }
+
+    public override void Action()
+    {
+
     }
 }

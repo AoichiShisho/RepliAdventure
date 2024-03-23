@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Repli : PlayerModel
 {
-    public override void Action()
+    private void Awake()
     {
         GameObject playerObject = GameObject.Find("Player");
         if (playerObject != null)
@@ -13,6 +13,7 @@ public class Repli : PlayerModel
             if (playerMovement != null)
             {
                 playerMovement.jumpHeight = 2.0f;
+                playerMovement.isSpider = false;
             }
             else
             {
@@ -23,5 +24,10 @@ public class Repli : PlayerModel
         {
             Debug.LogError("Playerオブジェクトがシーン内に見つかりません。");
         }
+    }
+
+    public override void Action()
+    {
+
     }
 }

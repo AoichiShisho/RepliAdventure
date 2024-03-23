@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spider : PlayerModel
 {
-    public override void Action()
+    private void Awake()
     {
         GameObject playerObject = GameObject.Find("Player");
         if (playerObject != null)
@@ -12,7 +12,8 @@ public class Spider : PlayerModel
             PlayerMovement playerMovement = playerObject.GetComponent<PlayerMovement>();
             if (playerMovement != null)
             {
-                playerMovement.jumpHeight = 2.0f;
+                playerMovement.jumpHeight = 0f;
+                playerMovement.isSpider = true;
             }
             else
             {
@@ -23,5 +24,10 @@ public class Spider : PlayerModel
         {
             Debug.LogError("Playerオブジェクトがシーン内に見つかりません。");
         }
+    }
+
+    public override void Action()
+    {
+
     }
 }

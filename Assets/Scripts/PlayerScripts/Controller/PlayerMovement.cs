@@ -16,6 +16,12 @@ public class PlayerMovement : MonoBehaviour
     public Camera cam;
     private bool isGrounded;
 
+    [SerializeField] private LayerMask ground;
+    public bool isWallClimbing = false;
+    private RaycastHit hit;
+
+    public bool isSpider = false;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -29,11 +35,19 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
 
+        if (isSpider)
+        {
+            WallClimbingCheck();
+        }
+
         // 地面に接触していない時に追加の重力を適用
         if (!isGrounded && rb.velocity.y < 0)
         {
             rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
+
+        //WallClimbingCheck();
+
     }
 
     void FixedUpdate()
@@ -91,4 +105,31 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+
+    private void WallClimbingCheck()
+    {
+        if (Physics.Raycast(transform.position, transform.forward, out hit, 1f, ground))
+        {
+            
+            if (Input.GetKey(KeyCode.Space))
+            {
+                isWallClimbing = true;
+                rb.useGravity = false;
+
+                rb.velocity = new Vector3(rb.velocity.x, speed, rb.velocity.z);
+                transform.Rotate(-90, 0, 0);
+            }
+            else
+            {
+                isWallClimbing = false;
+                rb.useGravity = true;
+            }
+        }
+        else
+        {
+            isWallClimbing = false;
+            rb.useGravity = true;
+        }
+    }
+
 }
