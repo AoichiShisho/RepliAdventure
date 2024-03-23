@@ -2087,7 +2087,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8164078559140282036}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -2172,6 +2172,8 @@ GameObject:
   - component: {fileID: 8164078559140282037}
   - component: {fileID: 8164078559140282039}
   - component: {fileID: 8164078559140282040}
+  - component: {fileID: 8164078559140282042}
+  - component: {fileID: 8164078559140282041}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2267,6 +2269,33 @@ MonoBehaviour:
   cameraController: {fileID: 495684448}
   playerUIManager: {fileID: 1466896181}
   stageRange: 25
+--- !u!114 &8164078559140282041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8164078559140282036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b60a0fe50ab740848072373bd990442, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerModels:
+  - {fileID: -4622911815781026884, guid: b4b8b049cfe354cf182719572e5b4b20, type: 3}
+  - {fileID: -6171675287790177221, guid: aa3784adb6428184e991be2d60ee0cb2, type: 3}
+--- !u!114 &8164078559140282042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8164078559140282036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcba0af40b50a4ee79baf55f448a4ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
